@@ -1,0 +1,84 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-align: none;
+  color: unset;
+}
+ul,
+ol {
+  list-style: none;
+}
+.wrap {
+  width: 1200px;
+  margin: 0 auto;
+}
+.main {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 180px;
+  display: flex;
+  background-color: lightblue;
+}
+.main .picbgc {
+  position: relative;
+  width: 545px;
+  height: 100%;
+  background-color: #e1e0ff;
+}
+.main .picbgc .pic {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.main .picbgc .pic img {
+  width: 100%;
+}
+.main .loginbgc {
+  flex: 1;
+  background-color: pink;
+}
+.main .loginbgc h2 {
+  padding: 10px;
+  font: normal 600 17px 微软雅黑;
+  color: #798ee6;
+  vertical-align: middle;
+}
+.main .loginbgc h2 .iconfont {
+  font-size: 25px;
+  vertical-align: middle;
+}
+.main .loginbgc .login {
+  height: 370px;
+  width: 319px;
+  background-color: #fff;
+  margin-left: 224px;
+  margin-top: 220px;
+}
+.main .loginbgc .login li {
+  height: 36px;
+  margin-bottom: 27px;
+  border-radius: 5px;
+}
+.main .loginbgc .login li:last-child {
+  margin-bottom: 0;
+}
+.main .loginbgc .login li:nth-child(1) {
+  text-align: center;
+  line-height: 1;
+  margin-bottom: 18px;
+  color: #21202c;
+}
+.main .loginbgc .login li input {
+  width: 100%;
+  height: 100%;
+  padding-left: 30px;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  background-color: #dcdbe7;
+  color: #b3b7c3;
+  font-size: 13px;
+}
