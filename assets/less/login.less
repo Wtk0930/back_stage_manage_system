@@ -4,12 +4,11 @@
 
 
 .main {
-    position        : absolute;
-    top             : 0;
-    bottom          : 0;
-    left            : 180px;
-    display         : flex;
-    background-color: lightblue;
+    position: absolute;
+    top     : 0;
+    bottom  : 0;
+    left    : 180px;
+    display : flex;
 
     .picbgc {
         position        : relative;
@@ -27,11 +26,48 @@
             }
         }
 
+        .decorationtop.large {
+            position        : absolute;
+            right           : 0;
+            width           : 182px;
+            height          : 135px;
+            background-color: #cccaf4;
+            border-radius   : 0 0 0 182px / 0 0 0 135px;
+
+            .small {
+                right           : 0;
+                width           : 138px;
+                height          : 84px;
+                position        : absolute;
+                background-color: #e1e0ff;
+                border-radius   : 0 0 0 138px / 0 0 0 84px;
+            }
+        }
+
+        .decorationbottom.large {
+            position        : absolute;
+            left            : 0;
+            bottom          : 0;
+            width           : 182px;
+            height          : 135px;
+            background-color: #cccaf4;
+            border-radius   : 0 182px 0 0 / 0 135px 0 0;
+
+            .small {
+                position        : absolute;
+                left            : 0;
+                bottom          : 0;
+                width           : 138px;
+                height          : 84px;
+                background-color: #e1e0ff;
+                border-radius   : 0 138px 0 0 / 0 84px 0 0;
+            }
+        }
+
     }
 
     .loginbgc {
-        flex            : 1;
-        background-color: pink;
+        flex: 1;
 
         h2 {
             padding       : 10px;
@@ -42,10 +78,12 @@
             .iconfont {
                 font-size     : 25px;
                 vertical-align: middle;
+                color         : #798ee6;
             }
         }
 
-        .login {
+        .login,
+        .register {
             height          : 370px;
             width           : 319px;
             background-color: #fff;
@@ -53,37 +91,126 @@
             margin-top      : 220px;
 
             li {
-                height             : 36px;
-                margin-bottom      : 27px;
-                // background-color: blue;
-                border-radius      : 5px;
+                position     : relative;
+                height       : 36px;
+                margin-bottom: 27px;
+                border-radius: 5px;
 
-                &:last-child {
+
+                &:last-child,
+                &:nth-last-child(2) {
                     margin-bottom: 0;
-                }
-
-                &:nth-child(1) {
-                    text-align   : center;
-                    line-height  : 1;
-                    margin-bottom: 18px;
-                    color:#21202c;
                 }
 
                 input {
                     width           : 100%;
                     height          : 100%;
-                    padding-left    : 30px;
+                    padding-left    : 20px;
                     box-sizing      : border-box;
                     outline         : none;
                     border          : none;
                     background-color: #dcdbe7;
-                    color:#b3b7c3;
-                    font-size: 13px;
+                    color           : #9fa3ad;
+                    font-size       : 13px;
+                    border-radius   : 4px;
+                    transition      : all .2s;
+
+                    &:focus {
+                        outline: 2px solid #859ad9;
+                    }
+                }
+
+
+                span {
+                    display   : none;
+                    position  : absolute;
+                    right     : 0;
+                    width     : 84px;
+                    top       : -3px;
+                    transform : translate(-10%, -100%);
+                    text-align: right;
+                    font-size : 12px;
+                    color     : #e08e90;
+                }
+
+                &:first-child {
+                    text-align   : center;
+                    line-height  : 1;
+                    margin-bottom: 18px;
+                    color        : #21202c;
+
+                    h3 {
+                        font-weight: 700;
+                    }
+                }
+
+
+                &:nth-last-child(3) {
+                    display        : flex;
+                    justify-content: space-between;
+
+                    input {
+                        width: 218px;
+                    }
+
+                    #checkcode {
+                        height          : 100%;
+                        width           : 92px;
+                        background-color: #798ee6;
+                    }
+
+                    span {
+                        left     : 218px;
+                        transform: translate(-110%, -100%);
+                    }
+                }
+
+                &:nth-last-child(2) {
+                    position: relative;
+
+                    input {
+                        height          : 100%;
+                        width           : 100%;
+                        background-color: #aebdf4;
+                        padding-left    : 0;
+                        font-size       : 12px;
+                        border          : none;
+                        border-radius   : 4px;
+                        color           : #e2e6f4;
+                        cursor          : pointer;
+                        transition      : all 0.5s;
+
+                        &:active {
+                            background-color: #96a6da;
+                        }
+
+                        &:focus {
+                            outline: none;
+                        }
+                    }
+                }
+
+                &:last-child {
+                    margin-top: 10px;
+                    ;
+                    text-align: right;
+                    font-size : 13px;
                 }
             }
 
-
-
         }
+
+        .register {
+            display: none;
+
+            li {
+                &:nth-child(4) {
+                    input {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
     }
 }

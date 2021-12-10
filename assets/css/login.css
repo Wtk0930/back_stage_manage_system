@@ -1,9 +1,10 @@
 * {
   margin: 0;
   padding: 0;
+  color: #252631;
 }
 a {
-  text-align: none;
+  text-decoration: none;
   color: unset;
 }
 ul,
@@ -20,7 +21,6 @@ ol {
   bottom: 0;
   left: 180px;
   display: flex;
-  background-color: lightblue;
 }
 .main .picbgc {
   position: relative;
@@ -36,9 +36,42 @@ ol {
 .main .picbgc .pic img {
   width: 100%;
 }
+.main .picbgc .decorationtop.large {
+  position: absolute;
+  right: 0;
+  width: 182px;
+  height: 135px;
+  background-color: #cccaf4;
+  border-radius: 0 0 0 182px / 0 0 0 135px;
+}
+.main .picbgc .decorationtop.large .small {
+  right: 0;
+  width: 138px;
+  height: 84px;
+  position: absolute;
+  background-color: #e1e0ff;
+  border-radius: 0 0 0 138px / 0 0 0 84px;
+}
+.main .picbgc .decorationbottom.large {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 182px;
+  height: 135px;
+  background-color: #cccaf4;
+  border-radius: 0 182px 0 0 / 0 135px 0 0;
+}
+.main .picbgc .decorationbottom.large .small {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 138px;
+  height: 84px;
+  background-color: #e1e0ff;
+  border-radius: 0 138px 0 0 / 0 84px 0 0;
+}
 .main .loginbgc {
   flex: 1;
-  background-color: pink;
 }
 .main .loginbgc h2 {
   padding: 10px;
@@ -49,36 +82,124 @@ ol {
 .main .loginbgc h2 .iconfont {
   font-size: 25px;
   vertical-align: middle;
+  color: #798ee6;
 }
-.main .loginbgc .login {
+.main .loginbgc .login,
+.main .loginbgc .register {
   height: 370px;
   width: 319px;
   background-color: #fff;
   margin-left: 224px;
   margin-top: 220px;
 }
-.main .loginbgc .login li {
+.main .loginbgc .login li,
+.main .loginbgc .register li {
+  position: relative;
   height: 36px;
   margin-bottom: 27px;
   border-radius: 5px;
 }
-.main .loginbgc .login li:last-child {
+.main .loginbgc .login li:last-child,
+.main .loginbgc .register li:last-child,
+.main .loginbgc .login li:nth-last-child(2),
+.main .loginbgc .register li:nth-last-child(2) {
   margin-bottom: 0;
 }
-.main .loginbgc .login li:nth-child(1) {
+.main .loginbgc .login li input,
+.main .loginbgc .register li input {
+  width: 100%;
+  height: 100%;
+  padding-left: 20px;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  background-color: #dcdbe7;
+  color: #9fa3ad;
+  font-size: 13px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+.main .loginbgc .login li input:focus,
+.main .loginbgc .register li input:focus {
+  outline: 2px solid #859ad9;
+}
+.main .loginbgc .login li span,
+.main .loginbgc .register li span {
+  display: none;
+  position: absolute;
+  right: 0;
+  width: 84px;
+  top: -3px;
+  transform: translate(-10%, -100%);
+  text-align: right;
+  font-size: 12px;
+  color: #e08e90;
+}
+.main .loginbgc .login li:first-child,
+.main .loginbgc .register li:first-child {
   text-align: center;
   line-height: 1;
   margin-bottom: 18px;
   color: #21202c;
 }
-.main .loginbgc .login li input {
-  width: 100%;
+.main .loginbgc .login li:first-child h3,
+.main .loginbgc .register li:first-child h3 {
+  font-weight: 700;
+}
+.main .loginbgc .login li:nth-last-child(3),
+.main .loginbgc .register li:nth-last-child(3) {
+  display: flex;
+  justify-content: space-between;
+}
+.main .loginbgc .login li:nth-last-child(3) input,
+.main .loginbgc .register li:nth-last-child(3) input {
+  width: 218px;
+}
+.main .loginbgc .login li:nth-last-child(3) #checkcode,
+.main .loginbgc .register li:nth-last-child(3) #checkcode {
   height: 100%;
-  padding-left: 30px;
-  box-sizing: border-box;
-  outline: none;
+  width: 92px;
+  background-color: #798ee6;
+}
+.main .loginbgc .login li:nth-last-child(3) span,
+.main .loginbgc .register li:nth-last-child(3) span {
+  left: 218px;
+  transform: translate(-110%, -100%);
+}
+.main .loginbgc .login li:nth-last-child(2),
+.main .loginbgc .register li:nth-last-child(2) {
+  position: relative;
+}
+.main .loginbgc .login li:nth-last-child(2) input,
+.main .loginbgc .register li:nth-last-child(2) input {
+  height: 100%;
+  width: 100%;
+  background-color: #aebdf4;
+  padding-left: 0;
+  font-size: 12px;
   border: none;
-  background-color: #dcdbe7;
-  color: #b3b7c3;
+  border-radius: 4px;
+  color: #e2e6f4;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+.main .loginbgc .login li:nth-last-child(2) input:active,
+.main .loginbgc .register li:nth-last-child(2) input:active {
+  background-color: #96a6da;
+}
+.main .loginbgc .login li:nth-last-child(2) input:focus,
+.main .loginbgc .register li:nth-last-child(2) input:focus {
+  outline: none;
+}
+.main .loginbgc .login li:last-child,
+.main .loginbgc .register li:last-child {
+  margin-top: 10px;
+  text-align: right;
   font-size: 13px;
+}
+.main .loginbgc .register {
+  display: none;
+}
+.main .loginbgc .register li:nth-child(4) input {
+  width: 100%;
 }
