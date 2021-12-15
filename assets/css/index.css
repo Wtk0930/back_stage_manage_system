@@ -1,0 +1,53 @@
+.layui-bg-myblue {
+  background-color: #39446a !important;
+}
+.layui-bg-white {
+  background-color: white !important;
+}
+.layui-side .layui-nav-bar {
+  display: none !important;
+}
+.layui-side li:first-child {
+  padding: 10px 0;
+}
+.layui-side li:first-child div {
+  text-align: center;
+  user-select: none;
+}
+.layui-side li:first-child div,
+.layui-header li:first-child div {
+  text-align: center;
+  user-select: none;
+}
+.layui-side li:first-child span:first-of-type,
+.layui-header li:first-child span:first-of-type {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  background-color: #009688;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 30px;
+  color: white;
+}
+.layui-footer {
+  text-align: center;
+}
+.layui-icon {
+  margin-right: 10px;
+}
+a {
+  transition: none !important;
+}
+#username {
+  color: #39446a;
+}
+.layui-body {
+  overflow: hidden;
+}
+.layui-body iframe {
+  height: 100%;
+  width: 100%;
+}
