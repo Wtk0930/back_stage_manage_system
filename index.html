@@ -21,7 +21,7 @@
                     <a href="javascript:;">
                         <img src="//tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg"
                             class="layui-nav-img">
-                        <span>W</span>
+                        <span class='word-img'>W</span>
                         <span id='username'>wtk</span>
                     </a>
                     <dl class="layui-nav-child">
@@ -31,7 +31,7 @@
                     </dl>
                 </li>
                 <li class="layui-nav-item" lay-header-event="menuRight" lay-unselect>
-                    <a href="javascript:;" style="color:#39446a ">
+                    <a href="javascript:;" id='logout' style="color:#39446a ">
                         <i class='iconfont icon-tuichu'></i>&nbsp;&nbsp;<strong>退出</strong>
                     </a>
                 </li>
@@ -46,8 +46,8 @@
                         <div>
                             <img src="//tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg"
                                 class="layui-nav-img">
-                            <span>W</span>
-                            <span>欢迎 XX</span>
+                            <span class='word-img'>W</span>
+                            <span id='welcome'>欢迎 XX</span>
                         </div>
                     </li>
                     <!-- layui-nav-itemed 是默认展开的意思 -->
@@ -86,12 +86,11 @@
         </div>
     </div>
     <script src="./assets/lib/jquery.js"></script>
-    <script src="./assets/js/baseAjax.js"></script>
     <script src="./assets/lib/layui/layui.all.js"></script>
+    <script src="./assets/js/baseAjax.js"></script>
     <script src="./assets/js/index.js"></script>
     <script>
         // 在进入首页时 点击按钮
-
         document.querySelector('.active').click();
     </script>
 </body>

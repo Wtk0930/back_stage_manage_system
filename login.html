@@ -46,11 +46,11 @@
                                 placeholder="请输入密码...">
                             <span>密码不得为空</span><span>密码有误</span>
                         </li>
-                        <li>
+                        <!-- <li>
                             <input type="text" name='verify_code' lay-verify='required|verify' placeholder="请输入验证码...">
                             <div id="checkcode"></div>
                             <span>验证码不得为空</span><span>验证码有误</span>
-                        </li>
+                        </li> -->
                         <li>
                             <input type='submit' lay-submit value='登录'>
                         </li>
@@ -97,6 +97,7 @@
     <script src="./assets/lib/layui/layui.all.js"></script>
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
     <script src="./assets/lib/verifycode.js"></script>
+    <script src="./assets/js/baseAjax.js"></script>
     <script src="./assets/js/login.js"></script>
     <script>
         document.querySelectorAll('input').forEach((e) => {

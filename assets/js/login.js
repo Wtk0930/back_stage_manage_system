@@ -19,10 +19,10 @@ let layer = layui.layer;
 })();
 
 
-// 验证码模块
-(function () {
-    verifyCode = new GVerify("checkcode");
-})();
+// // 验证码模块
+// (function () {
+//     verifyCode = new GVerify("checkcode");
+// })();
 
 
 
@@ -40,10 +40,10 @@ let layer = layui.layer;
                     return '两次密码输入不一致';
                 }
             },
-            verify: function (value) {
-                if (!verifyCode.validate(value))
-                    return '验证码填写错误';
-            }
+            // verify: function (value) {
+            //     if (!verifyCode.validate(value))
+            //         return '验证码填写错误';
+            // }
         })
     })
 })();
@@ -79,16 +79,21 @@ let layer = layui.layer;
         let user = {};
         user.username = document.querySelector('.login #username').value;
         user.password = document.querySelector('.login #password').value;
-        console.log(user);
+        console.log('登录已按下');
         $.ajax({
             type: "POST",
-            url: "http://127.0.0.1:8080/api/login",
+            url: "/api/login",
             data: user,
             success: function (res) {
+                console.log(res);
+                localStorage.setItem('token',res.token);
                 layer.msg(`<span style='color:white'>${res.msg}</span>`, {
                     anim: 2,
                     time: 800
                 });
+                if(res.msg === '登录成功'){
+                    location.href = './index.html';
+                }
             },
         });
     })
