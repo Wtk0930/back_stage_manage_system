@@ -97,6 +97,12 @@ let layer = layui.layer;
             },
         });
     })
+    document.querySelector('body').addEventListener('keyup',function(e){
+        if(e.code === 'Enter'){
+            // 按下回车键实现登录
+            $('input[value="登录"]').click();
+        }
+    })
 })();
 
 
