@@ -1,13 +1,16 @@
 // 发出请求渲染数据
-$.ajax({
-    method: "GET",
-    url: "/my/userinfo",
-    success: function (res) {
-        if(res.status !== 1)
-            renderAvatar(res.data);
-    },
-});
+initIndex();
 
+function initIndex(){
+    $.ajax({
+        method: "GET",
+        url: "/my/userinfo",
+        success: function (res) {
+            if(res.status !== 1)
+                renderAvatar(res.data);
+        },
+    });
+}
 
 
 // 渲染用户头像

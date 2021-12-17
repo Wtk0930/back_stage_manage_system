@@ -8,9 +8,11 @@
     <link rel="stylesheet" href="./assets/lib/layui/css/layui.css">
     <link rel="stylesheet" href="./assets/css/index.css">
     <link rel="stylesheet" href="./assets/fonts/iconfont.css">
+    <link rel="stylesheet" href="./assets/lib/cropper/cropper.css">
 </head>
 
 <body>
+    <!-- 主页内容 -->
     <div class="layui-layout layui-layout-admin">
         <div class="layui-header layui-bg-white">
             <div class="layui-logo layui-hide-xs layui-bg-myblue">
@@ -66,9 +68,12 @@
                     <li class="layui-nav-item layui-bg-myblue">
                         <a href="javascript:;"><i class="iconfont icon-user">&nbsp;&nbsp;&nbsp;&nbsp;</i>个人中心</a>
                         <dl class="layui-nav-child">
-                            <dd><a href="javascript:;"><i class="layui-icon layui-icon-list"></i> 基本资料</a></dd>
-                            <dd><a href="javascript:;"><i class="layui-icon layui-icon-list"></i> 更换头像</a></dd>
-                            <dd><a href="javascript:;"><i class="layui-icon layui-icon-list"></i> 重置密码</a></dd>
+                            <dd><a href="javascript:;" id='basic_message'><i class="layui-icon layui-icon-list"></i>
+                                    基本资料</a></dd>
+                            <dd><a href="javascript:;" id='change_avatar'><i class="layui-icon layui-icon-list"></i>
+                                    更换头像</a></dd>
+                            <dd><a href="javascript:;" id='reset_password'><i class="layui-icon layui-icon-list"></i>
+                                    重置密码</a></dd>
                         </dl>
                     </li>
                 </ul>
@@ -85,10 +90,122 @@
             copy-right
         </div>
     </div>
+    <!-- 个人中心对话框 -->
+    <div class="mask">
+
+    </div>
+    <!-- 1.修改资料 -->
+    <div class="basic_information center-dialog">
+        <form class="layui-form" lay-filter='basic_form'>
+            <ul class="content decoration">
+                <input type="hidden" name='id'>
+                <li>
+                    <label for="usename">登录名称</label>
+                    <input id='username' name='username' type="text" autocomplete="off" lay-verify='required'
+                        placeholder="请输入名称">
+                </li>
+                <li>
+                    <label for="nickname">用户昵称</label>
+                    <input id='nickname' name='nickname' type="text" autocomplete="off" lay-verify='nickname'
+                        placeholder='请输入昵称'>
+                </li>
+                <li>
+                    <label for="email">用户邮箱</label>
+                    <input type="email" name='email' id='email' autocomplete="off" lay-verify='email'
+                        placeholder='请输入邮箱'>
+                </li>
+                <li>
+                    <button lay-submit>
+                        提交修改
+                    </button>
+                    <button id='reset'>
+                        重置
+                    </button>
+                </li>
+            </ul>
+        </form>
+
+        <button class="close">
+        </button>
+    </div>
+    <!-- 更换头像 -->
+    <div class="change-avatar center-dialog">
+        <ul class="content decoration">
+            <!-- 第一行的图片裁剪和预览区域 -->
+            <div class="row1">
+                <!-- 图片裁剪区域 -->
+                <div class="cropper-box">
+                    <!-- 这个 img 标签很重要，将来会把它初始化为裁剪区域 -->
+                    <img id="image" src="/assets/images/sample.png" />
+                </div>
+                <!-- 图片的预览区域 -->
+                <div class="preview-box">
+                    <div>
+                        <!-- 宽高为 100px 的预览区域 -->
+                        <div class="img-preview w100"></div>
+                        <p class="size">100 x 100</p>
+                    </div>
+                    <div>
+                        <!-- 宽高为 50px 的预览区域 -->
+                        <div class="img-preview w50"></div>
+                        <p class="size">50 x 50</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第二行的按钮区域 -->
+            <div class="row2">
+                <input type="file" id="file" accept='image/png,img/jpeg'>
+                <button type="button" id='load' class="layui-btn">上传</button>
+                <button type="button" id='upload' class="layui-btn layui-btn-danger">确定</button>
+            </div>
+        </ul>
+        <div class="close">
+
+        </div>
+    </div>
+    <!-- 3. 重置密码 -->
+    <div class="reset_password center-dialog">
+        <form class="layui-form" lay-filter='reset_psw_form'>
+            <ul class="content decoration">
+                <input type="hidden" name='id'>
+                <li>
+                    <label for="oldPwd">原密码</label>
+                    <input id='oldPwd' name='oldPwd' type="text" autocomplete="off" lay-verify='required|pwd'
+                        placeholder="请输入原密码">
+                </li>
+                <li>
+                    <label for="newPwd">新密码</label>
+                    <input id='newPwd' name='newPwd' type="password" autocomplete="off" lay-verify='pwd'
+                        placeholder='请输入新密码'>
+                </li>
+                <li>
+                    <label for="newPwd2">确认新密码</label>
+                    <input id='newPwd2' type="password" name='newPwd2' autocomplete="off" lay-verify='pwd2'
+                        placeholder='请确认新密码'>
+                </li>
+                <li>
+                    <button lay-submit>
+                        提交修改
+                    </button>
+                    <button type="reset" id='reset'>
+                        重置
+                    </button>
+                </li>
+            </ul>
+        </form>
+
+        <button class="close">
+        </button>
+    </div>
     <script src="./assets/lib/jquery.js"></script>
     <script src="./assets/lib/layui/layui.all.js"></script>
+    <script src="/assets/lib/cropper/Cropper.js"></script>
+    <script src="/assets/lib/cropper/jquery-cropper.js"></script>
     <script src="./assets/js/baseAjax.js"></script>
     <script src="./assets/js/index.js"></script>
+    <script src='./assets/js/center.js'></script>
+
     <script>
         // 在进入首页时 点击按钮
         document.querySelector('.active').click();
