@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文章类别</title>
+    <link rel="stylesheet" href="../assets/lib/layui/css/layui.css">
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .layui-card {
+        padding: 10px 10px;
+    }
+
+    .layui-card-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .layui-form {
+        padding-right: 20px;
+        margin-top: 20px;
+    }
+</style>
+
+<body>
+    <div class="layui-card">
+        <div class="layui-card-header">
+            <h2>文章类别管理</h2>
+            <button class="layui-btn layui-btn-normal layui-btn-sm" id='add_cat'>添加分类</button>
+        </div>
+        <div class="layui-card-body">
+            <table class="layui-table" lay-skin="line">
+                <colgroup>
+                    <col>
+                    <col>
+                    <col>
+                    <col width="200">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>分类名称</th>
+                        <th>分类别名</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>最新</td>
+                        <td>Latest</td>
+                        <td>
+                            <button type="button" class="layui-btn layui-btn-xs btn-edit" data-id="1">修改</button>
+                            <button type="button" class="layui-btn layui-btn-danger layui-btn-xs btn-delete"
+                                data-id="1">删除</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script type='text/html' id='a-t'>
+        {{each data}}
+        <tr>
+            <td>{{$value.id}}</td>
+            <td>{{$value.name}}</td>
+            <td>{{$value.another_name}}</td>
+            <td>
+                <button type="button" class="layui-btn layui-btn-xs btn-edit" data-id={{$value.id}} id='update-btn'>修改</button>
+                <button type="button" class="layui-btn layui-btn-danger layui-btn-xs btn-delete"
+                    data-id={{$value.id}} id='del-btn'>删除</button>
+            </td>
+        </tr>
+        {{/each}}
+
+    </script>
+
+    <script type='text/html' id='add-layer'>
+        <form class="layui-form" id='add' lay-filter='add-form'>
+            <div class="layui-form-item">
+                <label class="layui-form-label">分类名称</label>
+                <div class="layui-input-block">
+                <input type="text" name="name" required  lay-verify="required" placeholder="请输入分类名称" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">分类别名</label>
+                <div class="layui-input-block">
+                <input type="text" name="another_name" required  lay-verify="required" placeholder="请输入分类别名" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="formDemo">确认添加</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+                </div>
+            </form>
+    </script>
+
+    <script type='text/html' id='update-layer'>
+        <form class="layui-form" id='update' lay-filter='update-form'>
+            <input type="hidden" name="id">
+            <div class="layui-form-item">
+                <label class="layui-form-label">分类名称</label>
+                <div class="layui-input-block">
+                <input type="text" name="name" required  lay-verify="required" placeholder="请输入分类名称" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">分类别名</label>
+                <div class="layui-input-block">
+                <input type="text" name="another_name" required  lay-verify="required" placeholder="请输入分类别名" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit>确认修改</button>
+                </div>
+                </div>
+            </form>
+    </script>
+
+
+
+    <script src='../assets/lib/jquery.js'></script>
+    <script src="../assets/lib/layui/layui.all.js"></script>
+    <script src="../assets/js/baseAjax.js"></script>
+    <script src="../assets/js/article_kind.js"></script>
+    <script src="../assets/lib/template-web.js"></script>
+    <script>
+        const layer = layui.layer;
+        const form = layui.form;
+        let layindex = 0;
+        function getArticles() {
+            $.ajax({
+                method: 'GET',
+                url: '/my/article/cates',
+                success: function (res) {
+                    $('tbody').html(template('a-t', { data: res.data }));
+                }
+            })
+        }
+        getArticles();
+
+
+        // 添加文章类别
+        $('#add_cat').on('click', function (e) {
+            layindex = layer.open({
+                type: 1,
+                title: '添加文章类别',
+                area: ['500px', '250px'],
+                content: $('#add-layer').html()
+            });
+        })
+
+        $('body').on('submit', '#add', function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "/my/article/addcates",
+                data: { ...form.val('add-form'), isDelete: 0 },
+                success: function (res) {
+                    if (res.status === 1) {
+                        layer.msg(res.message)
+                    } else {
+                        layer.msg(res.message);
+                        getArticles();
+                        layer.close(layindex)
+                    }
+                }
+            });
+        })
+
+
+        // 修改文章
+        $('tbody').on('click', '#update-btn', function (e) {
+            layindex = layer.open({
+                type: 1,
+                title: '修改文章信息',
+                area: ['500px', '250px'],
+                content: $('#update-layer').html()
+            });
+            let id = $(this).attr('data-id');
+            $.ajax({
+                method: 'get',
+                url: '/my/article/cates/' + id,
+                success: function (res) {
+                    form.val('update-form', res.data)
+                }
+            })
+        })
+
+        $('body').on('submit', '#update', function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "/my/article/updatecate",
+                data: { ...form.val('update-form') },
+                success: function (res) {
+                    if (res.status === 1) {
+                        layer.msg(res.message)
+                    } else {
+                        layer.msg(res.message);
+                        getArticles();
+                        layer.close(layindex)
+                    }
+                }
+            });
+        })
+
+
+
+        
+        // 删除文章
+        $('tbody').on('click', '#del-btn', function (e) {
+            let id = $(this).attr('data-id');
+            layindex = layer.open({
+                title: '删除文章',
+                content: '确定要删除该条文章吗',
+                yes: function (e) {
+                    $.ajax({
+                        method: 'GET',
+                        url: '/my/article/deletecate/' + id,
+                        success: function (res) {
+                            layer.msg(res.message);
+                            if (res.status === 0){
+                                getArticles();
+                                layer.close(layindex);
+                            }
+                        }
+                    })
+                }
+
+            })
+        })
+
+
+
+
+    </script>
+</body>
+
+</html>
